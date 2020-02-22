@@ -1,39 +1,30 @@
+import com.googlecode.lanterna.SGR;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextCharacter;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
-public class Hero {
-    private Position position;
-    Hero(Position position){
-        this.position=position;
-    }
-    public void setX(int x) {
-        this.position.setX(x);
-    }
-    public void setY(int y) {
-        this.position.setY(y);
-    }
-    public void setPosition(Position position){
-        this.position=position;
-    }
-    public int getX() {
-        return position.getX();
-    }
-    public int getY() {
-        return position.getY();
+public class Hero extends Element{
+    Hero(int x, int y){
+        super(x,y);
     }
     public Position moveUp(){
-        return new Position(position.getX(),position.getY()-1);
+        return super.getPosition().moveUp();
     }
     public Position moveDown(){
-        return new Position(position.getX(),position.getY()+1);
+        return super.getPosition().moveDown();
     }
     public Position moveLeft(){
-        return new Position(position.getX()-1,position.getY());
+        return super.getPosition().moveLeft();
     }
     public Position moveRight(){
-        return new Position(position.getX()+1,position.getY());
+        return super.getPosition().moveRight();
     }
-    public void draw(Screen screen){
-        screen.setCharacter(getX(), getY(), new TextCharacter('X'));
+    public void draw(TextGraphics graphics) {
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(super.getX(), super.getY()), "X");
     }
+
 }

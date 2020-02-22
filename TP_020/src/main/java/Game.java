@@ -7,10 +7,12 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 
 import javax.swing.*;
+import java.awt.geom.Area;
 import java.io.IOException;
 
 public class Game {
     private Screen screen;
+    private Arena arena;
     private Hero hero;
     Game(){
         try {
@@ -20,6 +22,7 @@ public class Game {
             screen.startScreen();             // screens must be started
             screen.doResizeIfNecessary();     // resize screen if necessary
             Position position = new Position(10,10);
+            arena = new Arena(20,20);
             hero = new Hero(position);
 
         } catch (IOException e) {
@@ -28,7 +31,7 @@ public class Game {
     }
     private void draw(){
         screen.clear();
-        hero.draw(screen);
+        arena.draw(screen.newTextGraphics());
         try {
             screen.refresh();
         } catch (IOException e) {
@@ -60,23 +63,8 @@ public class Game {
             }
 
         }
-        switch (key.getKeyType()){
-            case ArrowDown:
-                moveHero(hero.moveDown());
-                break;
-            case ArrowLeft:
-                moveHero(hero.moveLeft());
-                break;
-            case ArrowRight:
-                moveHero(hero.moveRight());
-                break;
-            case ArrowUp:
-                moveHero(hero.moveUp());
-                break;
-        }
+        arena.processKey(key);
 
     }
-    private void moveHero(Position position){
-        hero.setPosition(position);
-    }
+
 }
