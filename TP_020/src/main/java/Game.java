@@ -11,8 +11,7 @@ import java.io.IOException;
 
 public class Game {
     private Screen screen;
-    private int x =10;
-    private int y=10;
+    private Hero hero;
     Game(){
         try {
             Terminal terminal = new DefaultTerminalFactory().createTerminal();
@@ -20,7 +19,7 @@ public class Game {
             screen.setCursorPosition(null);   // we don't need a cursor
             screen.startScreen();             // screens must be started
             screen.doResizeIfNecessary();     // resize screen if necessary
-
+            hero = new Hero(10,10);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -28,7 +27,7 @@ public class Game {
     }
     private void draw(){
         screen.clear();
-        screen.setCharacter(x, y, new TextCharacter('X'));
+        hero.draw(screen);
         try {
             screen.refresh();
         } catch (IOException e) {
@@ -62,16 +61,16 @@ public class Game {
         }
         switch (key.getKeyType()){
             case ArrowDown:
-                y+=1;
+                hero.moveDown();
                 break;
             case ArrowLeft:
-                x-=1;
+                hero.moveLeft();
                 break;
             case ArrowRight:
-                x+=1;
+                hero.moveRight();
                 break;
             case ArrowUp:
-                y-=1;
+                hero.moveUp();
                 break;
         }
 
