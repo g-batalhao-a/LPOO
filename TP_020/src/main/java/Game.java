@@ -21,9 +21,8 @@ public class Game {
             screen.setCursorPosition(null);   // we don't need a cursor
             screen.startScreen();             // screens must be started
             screen.doResizeIfNecessary();     // resize screen if necessary
-            Position position = new Position(10,10);
-            arena = new Arena(20,20);
-            hero = new Hero(position);
+            arena = new Arena(60,20);
+            hero = new Hero(10,10);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -46,6 +45,12 @@ public class Game {
                 processKey(key);
                 if(KeyType.EOF == key.getKeyType())
                     break;
+                if(arena.verifyMonsterCollisions())
+                {
+                    screen.close();
+                    break;
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
