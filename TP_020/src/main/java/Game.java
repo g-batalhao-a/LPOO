@@ -19,7 +19,8 @@ public class Game {
             screen.setCursorPosition(null);   // we don't need a cursor
             screen.startScreen();             // screens must be started
             screen.doResizeIfNecessary();     // resize screen if necessary
-            hero = new Hero(10,10);
+            Position position = new Position(10,10);
+            hero = new Hero(position);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,18 +62,21 @@ public class Game {
         }
         switch (key.getKeyType()){
             case ArrowDown:
-                hero.moveDown();
+                moveHero(hero.moveDown());
                 break;
             case ArrowLeft:
-                hero.moveLeft();
+                moveHero(hero.moveLeft());
                 break;
             case ArrowRight:
-                hero.moveRight();
+                moveHero(hero.moveRight());
                 break;
             case ArrowUp:
-                hero.moveUp();
+                moveHero(hero.moveUp());
                 break;
         }
 
+    }
+    private void moveHero(Position position){
+        hero.setPosition(position);
     }
 }
