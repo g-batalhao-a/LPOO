@@ -11,8 +11,8 @@ public class Monster extends Element {
         super(x,y);
     }
     public void draw(TextGraphics graphics) {
-        graphics.setBackgroundColor(TextColor.Factory.fromString("#FF3333"));
-        graphics.putString(new TerminalPosition(super.getX(), super.getY()), "T");
+        graphics.setForegroundColor(TextColor.Factory.fromString("#FFDAB9"));
+        graphics.putString(new TerminalPosition(super.getX(), super.getY()), "M");
     }
     public Position move(){
         Random random = new Random();

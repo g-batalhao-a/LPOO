@@ -21,7 +21,7 @@ public class Game {
             screen.setCursorPosition(null);   // we don't need a cursor
             screen.startScreen();             // screens must be started
             screen.doResizeIfNecessary();     // resize screen if necessary
-            arena = new Arena(60,20);
+            arena = new Arena(80,24);
             hero = new Hero(10,10);
 
         } catch (IOException e) {

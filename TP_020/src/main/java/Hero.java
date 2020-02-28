@@ -6,6 +6,7 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
 public class Hero extends Element{
+    private int energy=3;
     Hero(int x, int y){
         super(x,y);
     }
@@ -22,9 +23,26 @@ public class Hero extends Element{
         return super.getPosition().moveRight();
     }
     public void draw(TextGraphics graphics) {
-        graphics.setForegroundColor(TextColor.Factory.fromString("#FFFF33"));
+        switch (energy){
+            case 3:
+                graphics.setForegroundColor(TextColor.Factory.fromString("#99FF33"));
+                break;
+            case 2:
+                graphics.setForegroundColor(TextColor.Factory.fromString("#FF9900"));
+                break;
+            case 1:
+                graphics.setForegroundColor(TextColor.Factory.fromString("#FF3300"));
+                break;
+        }
+
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(super.getX(), super.getY()), "X");
+    }
+    public int getEnergy() {
+        return energy;
+    }
+    public void setEnergy(int energy) {
+        this.energy = energy;
     }
 
 }

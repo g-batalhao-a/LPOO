@@ -9,5 +9,6 @@ public class Wall extends Element{
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FF3333"));
         graphics.putString(new TerminalPosition(super.getX(), super.getY()), " ");
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
     }
 }
