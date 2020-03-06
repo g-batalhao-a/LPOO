@@ -85,10 +85,16 @@ public class Game {
 
 
     private void GameOver(){
-        screen.newTextGraphics().setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
+        screen.clear();
+        screen.newTextGraphics().setBackgroundColor(TextColor.Factory.fromString("#000000"));
         screen.newTextGraphics().fillRectangle(new TerminalPosition(0, 0), new TerminalSize(80, 24), ' ');
         screen.newTextGraphics().setForegroundColor(TextColor.Factory.fromString("#FF3300"));
-        screen.newTextGraphics().putString(new TerminalPosition(40, 12), "PERDEU VIADO: "+score+" PONTOS (Enter to close)");
+        screen.newTextGraphics().putString(new TerminalPosition(20, 12), "PERDEU VIADO: "+score+" PONTOS (Enter to close)");
+        try {
+            screen.refresh();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         KeyStroke finkey = null;
         while (true){
             try {
