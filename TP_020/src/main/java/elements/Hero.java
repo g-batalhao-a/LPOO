@@ -1,13 +1,14 @@
+package elements;
+
 import com.googlecode.lanterna.SGR;
 import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TextCharacter;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.screen.Screen;
+import game.Position;
 
 public class Hero extends Element{
     private int energy=3;
-    Hero(int x, int y){
+    public Hero(int x, int y){
         super(x,y);
     }
     public Position moveUp(){
@@ -35,7 +36,7 @@ public class Hero extends Element{
                 break;
         }
 
-        graphics.enableModifiers(SGR.BOLD);
+        graphics.enableModifiers(SGR.CIRCLED);
         graphics.putString(new TerminalPosition(super.getX(), super.getY()), "X");
     }
     public int getEnergy() {

@@ -1,8 +1,11 @@
+package elements;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
+import game.Position;
 
 public abstract class Element {
     private Position position;
-    Element(int x, int y){
+    public Element(int x, int y){
         position = new Position(x,y);
     }
 

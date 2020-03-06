@@ -1,17 +1,12 @@
-import com.googlecode.lanterna.TerminalPosition;
-import com.googlecode.lanterna.TerminalSize;
-import com.googlecode.lanterna.TextCharacter;
-import com.googlecode.lanterna.TextColor;
+package game;
+
+import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
-import com.googlecode.lanterna.screen.Screen;
+import elements.*;
 
-import javax.swing.*;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Random;
 
 
@@ -23,15 +18,47 @@ public class Arena {
     private List<Tracker> trackers;
     private int width;
     private int height;
+    private int nummons;
+    private int numtrack;
+    private int numcoins;
+    private int level;
     private Hero hero;
-    Arena(int width, int height){
+    public Arena(int width, int height, int nummons, int numtrack, int numcoins, int level){
         hero= new Hero(10,10);
         this.width=width;
         this.height=height;
         this.walls = createWalls();
+        this.nummons=nummons;
+        this.numtrack=numtrack;
+        this.numcoins=numcoins;
+        this.level=level;
         this.coins=createCoins();
         this.monsters=createMonsters();
         this.trackers=createTrackers();
+    }
+    public int getLevel(){
+        return level;
+    }
+    public void setLevel(int level){
+        this.level=level;
+    }
+    public int getNumcoins(){
+        return numcoins;
+    }
+    public void setNumcoins(int num_coins){
+        this.numcoins=num_coins;
+    }
+    public int getNummons(){
+        return nummons;
+    }
+    public void setNummons(int num_mons){
+        this.nummons=num_mons;
+    }
+    public int getNumtrack(){
+        return numtrack;
+    }
+    public void setNumtrack(int num_track){
+        this.numtrack=num_track;
     }
     private List<Wall> createWalls() {
         List<Wall> walls = new ArrayList<>();
@@ -52,7 +79,7 @@ public class Arena {
         Random random = new Random();
         ArrayList<Coin> coins = new ArrayList<>();
         Position coin_pos;
-        for (int i = 0; i < 5; i++){
+        for (int i = 0; i < numcoins; i++){
             coin_pos = new Position( random.nextInt(width - 2) + 1,random.nextInt(height - 2) + 1);
             if(!coin_pos.equals(hero.getPosition()))
                 coins.add(new Coin(coin_pos.getX(),coin_pos.getY()));
@@ -67,7 +94,7 @@ public class Arena {
         Random random = new Random();
         ArrayList<Monster> monsters = new ArrayList<>();
         Position mons_pos;
-        for (int i = 0; i < 4; i++){
+        for (int i = 0; i < nummons; i++){
             mons_pos = new Position( random.nextInt(width - 2) + 1,random.nextInt(height - 2) + 1);
             if(!mons_pos.equals(hero.getPosition()))
                 monsters.add(new Monster(mons_pos.getX(),mons_pos.getY()));
@@ -82,7 +109,7 @@ public class Arena {
         Random random = new Random();
         ArrayList<Tracker> trackers = new ArrayList<>();
         Position mons_pos;
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < numtrack; i++){
             mons_pos = new Position( random.nextInt(width - 2) + 1,random.nextInt(height - 2) + 1);
             if(!mons_pos.equals(hero.getPosition()))
                 trackers.add(new Tracker(mons_pos.getX(),mons_pos.getY()));
@@ -173,6 +200,11 @@ public class Arena {
             tracker.draw(graphics);
         }
 
+        graphics.setBackgroundColor(TextColor.Factory.fromString("#FF3333"));
+        graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
+        graphics.enableModifiers(SGR.BOLD);
+        graphics.putString(new TerminalPosition(2,0),"Level: "+level);
+
     }
     public void moveHero(Position position){
         if(canHeroMove(position))
@@ -195,5 +227,13 @@ public class Arena {
 
         }
         coins=new_coins;
+    }
+
+    public boolean nextLevel(){
+        if(coins.isEmpty()) {
+            return true;
+        }
+        else
+            return false;
     }
 }

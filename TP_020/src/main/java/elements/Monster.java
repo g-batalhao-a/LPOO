@@ -1,13 +1,15 @@
+package elements;
+
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
+import game.Position;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Monster extends Element {
-    Monster(int x , int y){
+    public Monster(int x , int y){
         super(x,y);
     }
     public void draw(TextGraphics graphics) {

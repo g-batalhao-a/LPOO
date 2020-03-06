@@ -1,11 +1,12 @@
+package elements;
+
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import java.util.ArrayList;
-import java.util.Random;
+import game.Position;
 
 public class Tracker extends Element {
-    Tracker(int x , int y){
+    public Tracker(int x , int y){
         super(x,y);
     }
     public void draw(TextGraphics graphics) {
