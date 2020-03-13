@@ -32,7 +32,7 @@ public class ListAggregatorTest {
 
     @Test
     public void max() {
-
+        list.add(5);
         ListAggregator aggregator = new ListAggregator(list);
 
         int max = aggregator.max();
