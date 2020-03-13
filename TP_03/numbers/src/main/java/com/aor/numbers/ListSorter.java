@@ -23,10 +23,7 @@ public class ListSorter implements IListSorter{
         for (Integer number : list)
             sorted.add(number);
 
-        for (int i = 0; i < sorted.size() - 1; i++)
-            for (int j = i + 1; j < sorted.size() - 1; j++)
-                if (sorted.get(i) > sorted.get(j))
-                    Collections.swap(sorted, i, j);
+        Collections.sort(sorted);
 
         return sorted;
     }
