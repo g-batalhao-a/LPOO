@@ -15,5 +15,10 @@ public class Application {
         aa.sum();
         System.out.println(stringOutputter.output());
         System.out.println(xmlOutputter.outputXML());
+
+        aa.addShape(new Triangle(1,2));
+        aa.sum();
+        System.out.println(stringOutputter.output());
+        System.out.println(xmlOutputter.outputXML());
     }
 }
