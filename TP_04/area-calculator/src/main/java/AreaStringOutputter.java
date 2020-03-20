@@ -1,10 +1,10 @@
 public class AreaStringOutputter {
-    private AreaAggregator aa;
-    public AreaStringOutputter(AreaAggregator aa){
-        this.aa=aa;
+    private SumProvider sumProvider;
+    public AreaStringOutputter(SumProvider sumProvider){
+        this.sumProvider=sumProvider;
     }
 
     public String output() {
-        return "Sum of areas: " + aa.sum();
+        return "Sum of areas: " + this.sumProvider.sum();
     }
 }
