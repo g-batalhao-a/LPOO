@@ -66,18 +66,6 @@ public class Game {
             }
         }
         GameOver();
-        /*
-        KeyStroke finkey = null;
-        while (true){
-            try {
-                finkey = screen.readInput();
-                processKey(finkey);
-                if(KeyType.EOF == finkey.getKeyType()){
-                    break;
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }*/
         }
 
 
